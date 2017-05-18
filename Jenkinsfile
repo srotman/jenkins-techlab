@@ -10,7 +10,7 @@ timestamps() {
     timeout(time: 10, unit: 'MINUTES') {
         node {
             stage('Greeting') {
-                withEnv(['GREETINGS_TO=Jenkins Techlab']) {
+                withEnv(["GREETINGS_TO=Jenkins Techlab ${env.BUILD_ID}"]) {
                     echo "Hello, ${env.GREETINGS_TO} !"
 
                     // also available as env variable to a process:
