@@ -10,12 +10,12 @@ pipeline {
         cron('@midnight')
     }
     environment {
-        GREETINGS_TO = 'Jenkins Techlab'
+        GREETINGS_TO = "Jenkins Techlab ${env.BUILD_ID}"
     }
     stages {
         stage('Greeting') {
             steps {
-                echo "Hello, ${env.GREETINGS_TO} ${env.BUILD_ID} !"
+                echo "Hello, ${env.GREETINGS_TO} !"
 
                 // also available as env variable to a process:
                 sh 'echo "Hello, $GREETINGS_TO !"'
