@@ -1,11 +1,16 @@
 pipeline {
-    agent any
-    stages {
-        stage('Greeting') {
-            steps {
-                echo 'Hello, World!'
-            }
-        }
-    }
+	agent any
+	stages {
+		stage('Build') {
+			steps {
+				script {
+					def company = 'puzzle'
+					echo 'join the ${company}'
+					echo "join the ${company}"
+					echo '''join the ${company}'''
+					echo """join the ${company}"""
+				}
+			}
+		}
+	}
 }
-
