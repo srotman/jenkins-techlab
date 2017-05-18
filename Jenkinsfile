@@ -1,3 +1,5 @@
+@Library('jenkins-techlab-libraries') _
+
 properties([
     buildDiscarder(logRotator(numToKeepStr: '5')),
     pipelineTriggers([
@@ -32,11 +34,7 @@ try {
     throw e
 } finally {
     node {
-        if (currentBuild.result == 'UNSTABLE') {
-             rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/unstable.png', channel: 'jenkins-techlab', message: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true 
-        } else if (currentBuild.result == null) { // null means success
-            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/success.png', channel: 'jenkins-techlab', message: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
-        }
+        notifyPuzzleChat 'jenkins-techlab'
     }
 }
 
